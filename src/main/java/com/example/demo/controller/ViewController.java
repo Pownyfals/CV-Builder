@@ -12,8 +12,4 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("/search")
-    public String searchPage() {
-        return "search";
-    }
 }
