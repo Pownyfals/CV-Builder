@@ -1,0 +1,17 @@
+.primary-text{
+  color:rgba(134,239,172,255);
+  border-color:rgba(134,239,172,255) ;
+}
+
+.secondary-text{
+  color: rgba(213,247,230,255);
+}
+
+body{
+  background-color: rgba(33,37,41,255);
+}
+
+.remove-events{
+  pointer-events: none;
+}
+
