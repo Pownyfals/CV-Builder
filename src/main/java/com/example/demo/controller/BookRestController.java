@@ -1,41 +1,41 @@
 package com.example.demo.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.crypto.Data;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
-@Controller
-@RequestMapping("/")
-public class ViewController {
+@RestController
+public class BookRestController {
 
-    public String landingPage() {
-        return "index";
+    @RequestMapping("/hello")
+    public String hello() {
+        return "hello world";
     }
 
-    @GetMapping("/search")
-    public String search(@RequestParam(value = "judul", required = false) String judul, Model model)
-            throws JsonMappingException, JsonProcessingException {
+    @GetMapping(value = "/searchRest")
+    // @JsonProperty("data")
+    public JsonNode searchBook() throws JsonMappingException, JsonProcessingException {
         String url = "https://www.googleapis.com/books/v1/volumes?q=flower";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> books = restTemplate.getForEntity(url, String.class);
         ObjectMapper mapper = new JsonMapper();
-        JsonNode root = mapper.readTree(books.getBody());
-        Object book = mapper.convertValue(root.get("items"), Object.class);
-        model.addAttribute("books", book);
-        System.out.println(book.getClass());
-        return "index";
-        // return root.get("items");
+        JsonNode book = mapper.readTree(books.getBody());
+        System.out.println(book.get("items"));
+        return book.get("items");
     }
-
 }

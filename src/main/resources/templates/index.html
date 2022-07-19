@@ -120,15 +120,16 @@
             </section>
 
             <!-- Buku -->
-            <section id="buku" class="buku col-8 col-offset-1 col-xm-8 offset-xm-1  col-sm-8 offset-sm-1 col-lg-9 offset-lg-1 ">
+            <section id="buku" class="buku col-8 col-offset-1 col-xm-8 offset-xm-1  col-sm-8 offset-sm-1 col-lg-9 offset-lg-1"
+            th:each="book : ${books}">
                 <div class="card mb-3 border-success text-bg-dark text-white-50">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img src="..." class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
+                        <div class="card-body" >
+                          <h5 class="card-title" th:text="${book.volumeInfo.title}">Card title</h5>
                           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
@@ -136,7 +137,6 @@
                     </div>
                   </div>
             </section>
-            
 
         </div>
             
