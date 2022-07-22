@@ -26,7 +26,7 @@ public class ViewController {
     @GetMapping("/search")
     public String search(@RequestParam(value = "judul", required = false) String judul, Model model)
             throws JsonMappingException, JsonProcessingException {
-        String url = "https://www.googleapis.com/books/v1/volumes?q=flower";
+        String url = "https://www.googleapis.com/books/v1/volumes?q=" + judul;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> books = restTemplate.getForEntity(url, String.class);
         ObjectMapper mapper = new JsonMapper();

@@ -27,7 +27,7 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5 mb-5">
-                    <h1 class="primary-text " href="index.html">Book</h1>
+                    <h1 class="primary-text " href="index.html">myBook</h1>
                     <button class="primary-text btn ">Donate Us</button>
                 </div>
             </nav>
@@ -46,6 +46,7 @@
                         </div>
                         <div class="col-lg-5 col-xl-6 col-xxl-7 d-xl-block text-center">
                             <img class="img-fluid rounded-3 remove-events mb-5" src="../static/img/background.png" alt="..." /></div>
+                            <!-- <img class="img-fluid rounded-3 remove-events mb-5" src="img/background.png" alt="..." /></div> -->
                         </div>
                     </div>
             </header>
@@ -106,37 +107,100 @@
             <!-- Search -->
             <section id="search" class="search">
                 <h1 class="primary-text text-center mt-5">Try Searching!</h1>
-                <p class="lead fw-normal text-white-50 text-center">try searching through our resources</p>
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col-8 col-offset-1 col-xm-8 offset-xm-1  col-sm-8 offset-sm-1 col-lg-9 offset-lg-1 ">
-                            <input type="email" class="form-control bg-dark primary-text text-white-50" id="exampleFormControlInput1" placeholder="name@example.com">
+                <p class="lead fw-normal text-white-50 text-center">try to fill the box below, you'll like it!</p>
+                <form th:action="@{/search}">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-8 col-offset-1 col-xm-8 offset-xm-1  col-sm-8 offset-sm-1 col-lg-9 offset-lg-1 ">
+                                <input type="text" th:name="judul"class="form-control bg-dark primary-text text-white-50" id="exampleFormControlInput1">
+                            </div>
+                            <div class="col-2 col-sm-2 col-lg-2">
+                                <button class="btn primary-text btn-md px-4 me-sm-3">Search</button>
+                            </div>
                         </div>
-                        <div class="col-2 col-sm-2 col-lg-2">
-                            <button class="btn primary-text btn-md px-4 me-sm-3">Search</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </section>
 
             <!-- Buku -->
-            <section id="buku" class="buku col-8 col-offset-1 col-xm-8 offset-xm-1  col-sm-8 offset-sm-1 col-lg-9 offset-lg-1"
+            <section id="buku" class="buku col-12 col-xm-12  col-sm-10 offset-sm-1 col-lg-8 offset-lg-2"
             th:each="book : ${books}">
                 <div class="card mb-3 border-success text-bg-dark text-white-50">
                     <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="..." class="img-fluid rounded-start" alt="...">
+                      <div class="col-md-2 text-center">
+                        <img th:if="${book.volumeInfo.imageLinks != null}" th:src="${book.volumeInfo.imageLinks.thumbnail}" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body" >
-                          <h5 class="card-title" th:text="${book.volumeInfo.title}">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <h5 class="card-title"><a class="text-white-50 remove-decor" th:href="${book.volumeInfo.infoLink}"th:text="${book.volumeInfo.title}"></a></h5>
+                              <!-- <p class="card-text" th:text="${book.volumeInfo.description}" maxlength="10">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                              <p class="card-text text-right" th:text="${book.volumeInfo.publishedDate}"></p>
                         </div>
                       </div>
                     </div>
                   </div>
             </section>
+
+            <!-- Documentation -->
+            <section id="documentation" class="bg-dark">
+                <div class="container">
+
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-5 col-xl-6 col-xxl-7 text-center">
+                            <img class="img-fluid rounded-3 remove-events mb-5" src="../static/img/documentation.png" alt="..." />
+                        </div>
+                            <!-- <img class="img-fluid rounded-3 remove-events mb-5" src="img/background.png" alt="..." /></div> -->
+                            <div class="col-lg-5 col-xl-6 col-xxl-5">
+                                <h2 class="primary-text mb-2">Documentation</h2>
+                                <p class="lead fw-normal text-white-50 mb-5">We'll provide the documentation of this website</p>
+                                <p class="lead fw-normal text-white-50">You can read how I craft this website from scratch, starting from the UI
+                                    design, API documentation, also contain the problem and solution of creating this website.
+                                </p>
+                                <a  class="btn primary-text btn-lg mb-5" href="#search">Documentation</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </section>
+
+             <!-- Contributors -->
+            <section class="page-section bg-dark" id="contributors">
+                <h1 class="primary-text text-center mt-5">Contributors</h1>
+                <p class="lead fw-normal text-white-50 text-center">Behold! the OG contributors of this website!</p>
+                <div class="container text-center">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2">
+                            <img src="https://github.com/WildDG.png" alt="" class="rounded-circle" width="130px">
+                            <h4 class="primary-text mt-0 mt-3" >WildDG</h4>
+                            <p class = "font-weight-light text-white-50">Air Support</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <img src="https://github.com/pownyfals.png" alt="" class="rounded-circle" width="130px">
+                            <h4 class="primary-text mt-0 mt-3" >Kevin Febrian</h4>
+                            <p class = "font-weight-light text-white-50">Main Carry</p>
+                        </div>
+                        <div class="col col-lg-2">
+                            <img src="https://github.com/msyahrul801.png" alt="" class="rounded-circle" width="130px">
+                            <h4 class="primary-text mt-0 mt-3" >UwU roel</h4>
+                            <p class = "font-weight-light text-white-50">Air Support</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="text-center text-white-50 py-5">        
+                Made with <svg viewBox="0 0 1792 1792" 
+                preserveAspectRatio="xMidYMid meet" 
+                xmlns="http://www.w3.org/2000/svg" 
+                style="height: 0.8rem;">
+                <path d="M896 1664q-26 0-44-18l-624-602q-10-8-27.5-26T145 952.5 77 855 23.5 734 0 596q0-220 127-344t351-124q62 
+                0 126.5 21.5t120 58T820 276t76 68q36-36 76-68t95.5-68.5 120-58T1314 128q224 0 351 124t127 344q0 221-229 450l-623 
+                600q-18 18-44 18z" fill="#e25555"></path>
+                </svg> by <a href="https://github.com/Pownyfals" class="primary-text remove-decor">Kevin</a>
+            </footer>
+
+
 
         </div>
             

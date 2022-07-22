@@ -25,3 +25,6 @@ body{
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-56 { font-size: 56px; }
 
+.remove-decor{
+  text-decoration: none;
+}
