@@ -2,6 +2,8 @@
 # My Book
 
 Library aplications using [Google Books API](https://developers.google.com/books) and powered by [Spring](https://spring.io/).
+
+<br>
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/38776020/181439493-a5b8589d-171c-49c3-8ea2-85836f3ea536.gif)
 
 
