@@ -37,7 +37,7 @@ Type this url in your browser address bar to use the app
 
 #### Peforming Search
 
-```http
+```bash
   GET https://www.googleapis.com/books/v1/volumes?q=search+terms
 ```
 
@@ -46,7 +46,7 @@ Type this url in your browser address bar to use the app
 | `q` | `string` | special keyword you can specify in search |
 
 Here is an example of searching for Daniel Keyes' "Flowers for Algernon":
-```http
+```bash
   GET https://www.googleapis.com/books/v1/
   volumes?q=flowers+inauthor:keyes&key=yourAPIKey
 ```
